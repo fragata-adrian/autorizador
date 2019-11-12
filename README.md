@@ -1,7 +1,7 @@
 # Autorizador
 
 ## Operaciones
-El programa maneja dos tipos de operaciones. Ambos operaciones deben exponerse como servicios RESTful.
+El programa maneja dos tipos de operaciones. Ambos operaciones deben exponerse como servicios RESTful independientes que reciban y retornen documentos json.
 
 1. Creación de cuenta
 2. Autorización de transacción
@@ -68,4 +68,13 @@ salida
     { "account": { "activeCard": true, "availableLimit": 80 }, "violations": [ "insufficient-limit" ] }
 ```
 
+## Uso
+
+```bash
+   curl -X POST -d '{ "account": { "id": "3bjk2h39", "activeCard": true, "availableLimit": 100 }, "violations": [] }' http://localhost:8080/autorizador/cuenta
+```
+
+```bash
+   curl -X POST -d '{ "transaction": { "merchant": "Burger King", "amount": 20, "time": "2019-02-13T10:00:00.000Z" } }' http://localhost:8080/autorizador/autorizacion
+```
 
